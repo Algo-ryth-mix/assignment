@@ -1,0 +1,16 @@
+{
+	"sword-wood":	{
+		"pretty-name": "Wooden Sword",
+		"atk": 20,
+		"uses": 10
+	},
+	"armor-iron":	{
+		"pretty-name": "Iron Armor",
+		"def": 10,
+		"uses": -1
+	}
+	"time-bonus":	{
+		"pretty-name": "Extra Time",
+		"tme":1
+	}
+}
