@@ -8,9 +8,10 @@
 		"pretty-name": "Iron Armor",
 		"def": 10,
 		"uses": -1
-	}
+	},
 	"time-bonus":	{
 		"pretty-name": "Extra Time",
-		"tme":1
+		"tme": 1,
+		"uses": -1
 	}
 }

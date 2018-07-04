@@ -31,7 +31,10 @@ int main(int argc,char ** argv)
 	
 	//create player
 	Player player(&tiles);
+	player.addToInventory(i);
+	player.addToInventory(ItemLoader::loadItem("armor-iron"));
 	
+
 	//game loop
 	while(m_window.isOpen())
 	{

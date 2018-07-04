@@ -1,2 +1,17 @@
-#	X,	Y,	Name,	Health,	Points, Drops
- 	2,	1,	Spider,	100,	10,	Sword-Wood
+{
+	"spider01": {
+		"pretty-name": "Spider",
+		"position": {
+			"X":1,
+			"Y":2,
+		},
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+		},
+		"drops": {
+			"sword-wooden": 0.87
+		}
+	}
+}
