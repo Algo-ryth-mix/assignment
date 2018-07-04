@@ -1,17 +1,14 @@
 {
-	"spider01": {
+	"2-1": {
 		"pretty-name": "Spider",
-		"position": {
-			"X":1,
-			"Y":2,
-		},
 		"stats": {
 			"atk": 10,
 			"def": 5,
 			"value":5,
+			"health":50
 		},
 		"drops": {
-			"sword-wooden": 0.87
+			"sword-wood": 0.80
 		}
 	}
 }

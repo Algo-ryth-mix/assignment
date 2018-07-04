@@ -5,14 +5,15 @@
 #include "Player.h"
 #include "LevelLoader.h"
 #include "ItemLoader.h"
+#include "EnemyController.h"
 
 
 int main(int argc,char ** argv)
 {
+	//Player Texture
+	sf::Texture playerTex;
+	playerTex.loadFromFile("assets/Player.png");
 
-	auto i = ItemLoader::loadItem("sword-wood");
-
-	std::cout << i.name << std::endl;
 
 	//create window
 	sf::RenderWindow m_window(sf::VideoMode(1000,800),"Time Trial | Almost Roguelike - Raphael Baier!");
@@ -23,6 +24,11 @@ int main(int argc,char ** argv)
 	//load level 1 (make sure level1.data exists)
 	LevelLoader::loadLevel(&tiles,1);
 
+	EnemyController& controller = EnemyController::get();
+
+	controller.registerGameBoard(&tiles);
+	controller.loadEnemies(1);
+
 	//create initial draw information
 	for_all_tiles(&tiles,[](int x,int y,Tile& t){
 		t.repr.setSize({TILE_SIZE,TILE_SIZE});
@@ -31,7 +37,6 @@ int main(int argc,char ** argv)
 	
 	//create player
 	Player player(&tiles);
-	player.addToInventory(i);
 	player.addToInventory(ItemLoader::loadItem("armor-iron"));
 	
 
@@ -80,9 +85,16 @@ int main(int argc,char ** argv)
 		for_all_tiles(&tiles,[&](int x,int y,Tile &tile){
 			switch (tile.state)
 			{
-			case IS_PLAYER: tile.repr.setFillColor(sf::Color::Green);break;
-			case IS_GROUND: tile.repr.setFillColor(sf::Color::Black);break;
-			case IS_WALL:   tile.repr.setFillColor(sf::Color::White) ;break;
+			case IS_PLAYER:
+			{
+					tile.repr.setTexture(player.getTexture());
+					tile.repr.setFillColor(sf::Color::White);
+			}break;
+			case IS_GROUND:	{
+					tile.repr.setTexture(nullptr);
+					tile.repr.setFillColor(sf::Color::White);
+			}break;
+			case IS_WALL:   tile.repr.setFillColor(sf::Color::Black) ;break;
 			case IS_PORTAL: tile.repr.setFillColor(sf::Color::Blue);break;
 			case IS_ENEMY:	tile.repr.setFillColor(sf::Color::Red);break;
 			default: ;

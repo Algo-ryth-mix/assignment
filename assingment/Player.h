@@ -3,11 +3,15 @@
 #include "Tiles.h"
 #include "LevelLoader.h"
 #include "Item.h"
-
+#include "EnemyController.h"
+#include <filesystem>
+#include <algorithm>
 
 class Player
 {
 public:
+
+	//create a Player
 	Player(gameboard* board) : m_board(board)
 	{
 		//init gui
@@ -61,6 +65,7 @@ public:
 		spawn();
 	}
 
+	//spawn (or respawn) the player
 	void spawn() //respawn at spawn tile
 	{
 		for_all_tiles(m_board,[&](int x,int y,Tile & t)
@@ -79,11 +84,13 @@ public:
 		m_timer.restart();
 	}
 
+	//get the players posiiton on the board
 	sf::Vector2i getPosition() const
 	{
 		return {m_x,m_y};
 	}
 
+	//move Player && do all the Player Logic when moved
 	void setPosition(int x,int y)
 	{
 		//stop at world edge
@@ -97,17 +104,63 @@ public:
 		{
 			//load new level
 			LevelLoader::loadLevel(m_board,m_board->at(x).at(y).extraData);
+			EnemyController::get().loadEnemies(m_board->at(x).at(y).extraData);
 
 			//respawn in level
 			spawn();
 			return;
 		}
 
-		//handle portals
+		//handle enemies
 		if(m_board->at(x).at(y).state == IS_ENEMY)
 		{
-			m_health-=10;
-			m_points+=5;
+			Enemy& e = EnemyController::get().getEnemyAt(x,y);
+			
+
+
+			//do damage calculations
+
+			int total_damage = BASE_ATK;
+			float total_defense = BASE_DEF;
+
+			for(size_t i = 0; i < m_inventory.size();i++)
+			{
+				Item& it = m_inventory[i];
+				total_damage += it.atk_buf;
+				total_defense += it.def_buf;
+			
+				//check if item is used up
+				it.num_uses--;
+				if(it.num_uses == 0)
+				{
+					//if it is remove it
+					m_inventory.erase(m_inventory.begin()+i);
+				}
+			}
+
+			//apply damage to enemy
+			e.health -= total_damage;
+
+			if(e.health > 0)
+			{
+				//apply damage to player
+				m_health-=e.atk / total_defense;
+				return;
+				
+			}
+
+			//add enemy drops to player
+			for(const auto& drop : e.drops)
+			{
+				addToInventory(drop);
+			}
+
+			//add points to player
+			m_points+=e.value;
+
+			//remove enemy
+			EnemyController::get().removeEnemyAt(x,y);
+
 		}
 
 		//"swap" places with the tile
@@ -117,6 +170,7 @@ public:
 		m_y = y;
 	}
 
+	//show all the GUI elements
 	void showGUI(sf::RenderWindow& wnd)
 	{
 		gui.healthBar.setSize({static_cast<float>(m_health),10});
@@ -144,6 +198,7 @@ public:
 
 	}
 
+	//update some internal variables every tick
 	void update()
 	{
 		//did the player take longer than 10 seconds to complete the level ?
@@ -172,8 +227,44 @@ public:
 		m_inventory.push_back(item);
 	}
 
+	sf::Texture* getTexture()
+	{
+		namespace fs = std::experimental::filesystem;
+
+
+		std::vector<std::pair<int,std::string>> m_scores;
+
+		fs::path p = "assets\\Player\\";
+		for(const auto& file : p)
+		{
+			std::cout << p.string();
+			m_scores.emplace_back(std::make_pair(0,p.string()));
+		}
+
+		//search for best available picture
+		for(const auto& item : m_inventory)
+		{
+			for(auto& score : m_scores )
+			{
+				if(score.second.find(item.id) != std::string::npos) score.first++;
+			}
+		}
+
+		//get the best one
+		std::string bestFile = std::max_element(m_scores.begin(), m_scores.end(), [](auto a,auto b) { return a.first < b.first; })->second;
+
+		sf::Texture* t = new sf::Texture;
+		t->loadFromFile(bestFile);
+		return t;
+	}
 
 private:
+
+	std::vector<sf::Texture> m_textures;
+
+
+	const int BASE_ATK = 10;
+	const float BASE_DEF = 1;
 
 	int m_health = 100;
 	int m_points = 0;

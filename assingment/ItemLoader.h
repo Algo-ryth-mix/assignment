@@ -16,11 +16,13 @@ public:
 
 		Item item{};
 
+		item.id = name;
+
 		item.name = j[name]["pretty-name"].get<std::string>();
 		item.num_uses = j[name]["uses"].get<int>();
 		if(!j[name]["def"].is_null())
 		{
-			item.def_buf = j[name]["def"].get<int>();
+			item.def_buf = j[name]["def"].get<float>();
 		}
 		else item.def_buf = 0;
 		

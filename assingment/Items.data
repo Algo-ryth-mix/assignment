@@ -6,7 +6,7 @@
 	},
 	"armor-iron":	{
 		"pretty-name": "Iron Armor",
-		"def": 10,
+		"def": 1,
 		"uses": -1
 	},
 	"time-bonus":	{
