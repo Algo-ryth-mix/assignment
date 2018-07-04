@@ -11,9 +11,11 @@
 int main(int argc,char ** argv)
 {
 	//Player Texture
-	sf::Texture playerTex;
-	playerTex.loadFromFile("assets/Player.png");
+	sf::Texture wallTex;
+	wallTex.loadFromFile("assets/Environment/Wall.png");
 
+	sf::Texture portalTex;
+	portalTex.loadFromFile("assets/Environment/Portal.png");
 
 	//create window
 	sf::RenderWindow m_window(sf::VideoMode(1000,800),"Time Trial | Almost Roguelike - Raphael Baier!");
@@ -94,9 +96,22 @@ int main(int argc,char ** argv)
 					tile.repr.setTexture(nullptr);
 					tile.repr.setFillColor(sf::Color::White);
 			}break;
-			case IS_WALL:   tile.repr.setFillColor(sf::Color::Black) ;break;
-			case IS_PORTAL: tile.repr.setFillColor(sf::Color::Blue);break;
-			case IS_ENEMY:	tile.repr.setFillColor(sf::Color::Red);break;
+			case IS_WALL:
+			{
+					tile.repr.setTexture(&wallTex);
+					tile.repr.setFillColor(sf::Color::White);
+			}break;
+			case IS_PORTAL: 			
+			{
+					tile.repr.setTexture(&portalTex);
+					tile.repr.setFillColor(sf::Color::White);
+			}break;
+			case IS_ENEMY:
+			{
+					Enemy& e = EnemyController::get().getEnemyAt(x,y);
+					tile.repr.setTexture(LoadBufferedImage("assets/Mobs/" + e.name + ".png"));
+					tile.repr.setFillColor(sf::Color::White);break;
+			}
 			default: ;
 			}
 

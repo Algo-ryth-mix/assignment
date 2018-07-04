@@ -8,7 +8,8 @@
 			"health":50
 		},
 		"drops": {
-			"sword-wood": 0.80
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
 		}
 	}
 }

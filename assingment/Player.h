@@ -6,6 +6,7 @@
 #include "EnemyController.h"
 #include <filesystem>
 #include <algorithm>
+#include "helper.h"
 
 class Player
 {
@@ -116,8 +117,6 @@ public:
 		{
 			Enemy& e = EnemyController::get().getEnemyAt(x,y);
 			
-
-
 			//do damage calculations
 
 			int total_damage = BASE_ATK;
@@ -144,7 +143,7 @@ public:
 			if(e.health > 0)
 			{
 				//apply damage to player
-				m_health-=e.atk / total_defense;
+				m_health -= (e.atk / total_defense);
 				return;
 				
 			}
@@ -208,6 +207,37 @@ public:
 		}
 
 		gui.elapsedTime.setString(std::to_string(m_timer.getElapsedTime().asSeconds()).c_str());
+
+		namespace fs = std::experimental::filesystem;
+
+		//check if inventory got modified
+		if(m_invDirty){
+			
+			//if yes search for a new asset for the player
+			std::vector<std::pair<int,std::string>> m_scores;
+
+			fs::path p = "assets/Player/";
+			for(const auto& file : fs::directory_iterator(p))
+			{
+				std::cout << file<<std::endl;
+				m_scores.emplace_back(std::make_pair(0,file.path().string()));
+			}
+
+			//search for best available picture
+			for(const auto& item : m_inventory)
+			{
+				for(auto& score : m_scores )
+				{
+					if(score.second.find(item.id) != std::string::npos) score.first++;
+				}
+			}
+
+			//get the best one
+			const std::string bestFile = std::max_element(m_scores.begin(), m_scores.end(), [](auto a,auto b) { return a.first < b.first; })->second;
+
+			m_currentTexture = LoadBufferedImage(bestFile);
+			m_invDirty = false;
+		}
 	}
 
 	//Add a Item to the Inventory
@@ -223,45 +253,21 @@ public:
 				return;
 			}
 		}
-		
+		m_invDirty = true;
 		m_inventory.push_back(item);
 	}
 
 	sf::Texture* getTexture()
 	{
-		namespace fs = std::experimental::filesystem;
-
-
-		std::vector<std::pair<int,std::string>> m_scores;
-
-		fs::path p = "assets\\Player\\";
-		for(const auto& file : p)
-		{
-			std::cout << p.string();
-			m_scores.emplace_back(std::make_pair(0,p.string()));
-		}
-
-		//search for best available picture
-		for(const auto& item : m_inventory)
-		{
-			for(auto& score : m_scores )
-			{
-				if(score.second.find(item.id) != std::string::npos) score.first++;
-			}
-		}
-
-		//get the best one
-		std::string bestFile = std::max_element(m_scores.begin(), m_scores.end(), [](auto a,auto b) { return a.first < b.first; })->second;
-
-		sf::Texture* t = new sf::Texture;
-		t->loadFromFile(bestFile);
-		return t;
+		return m_currentTexture;
 	}
 
 private:
 
-	std::vector<sf::Texture> m_textures;
+	sf::Texture* m_currentTexture;
 
+
+	bool m_invDirty = true;
 
 	const int BASE_ATK = 10;
 	const float BASE_DEF = 1;
