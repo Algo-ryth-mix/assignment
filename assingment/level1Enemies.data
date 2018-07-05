@@ -1,6 +1,110 @@
 {
-	"2-1": {
-		"pretty-name": "Spider",
+	"8-9": {
+		"pretty-name": "Hydra-Head2",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"9-9": {
+		"pretty-name": "Hydra-Head1",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"10-9": {
+		"pretty-name": "Hydra-Head3",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"8-8": {
+		"pretty-name": "Hydra-Neck2",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"9-8": {
+		"pretty-name": "Hydra-Neck-Middle",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"10-8": {
+		"pretty-name": "Hydra-Neck1",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"8-7": {
+		"pretty-name": "Hydra-Neck-Corner2",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"9-7": {
+		"pretty-name": "Hydra-Neck-Corner2",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"10-7": {
+		"pretty-name": "Hydra-Neck-Corner1",
 		"stats": {
 			"atk": 10,
 			"def": 5,

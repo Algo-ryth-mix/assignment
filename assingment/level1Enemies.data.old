@@ -1,0 +1,41 @@
+{
+	"4-10": {
+		"pretty-name": "Spider",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"8-10": {
+		"pretty-name": "Spider",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	},
+	"12-10": {
+		"pretty-name": "Spider",
+		"stats": {
+			"atk": 10,
+			"def": 5,
+			"value":5,
+			"health":50
+		},
+		"drops": {
+			"sword-wood": 0.80,
+			"armor-iron": 0.20
+		}
+	}
+}

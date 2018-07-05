@@ -8,6 +8,8 @@
 #include <algorithm>
 #include "helper.h"
 
+const int AVAILABLE_TIME_DEFAULT = 15; //seconds
+
 class Player
 {
 public:
@@ -197,11 +199,17 @@ public:
 
 	}
 
+	//pretty self explanatory
+	bool is_dead() const
+	{
+		return m_health <= 0;
+	}
+
 	//update some internal variables every tick
 	void update()
 	{
 		//did the player take longer than 10 seconds to complete the level ?
-		if(m_timer.getElapsedTime().asMilliseconds() > 10000)
+		if(m_timer.getElapsedTime().asMilliseconds() > AVAILABLE_TIME_DEFAULT * 1000)
 		{
 			m_health = 0; //yes level failed
 		}
@@ -262,6 +270,11 @@ public:
 		return m_currentTexture;
 	}
 
+
+	sf::Font getFont() const
+	{
+		return gui.fnt;
+	}
 private:
 
 	sf::Texture* m_currentTexture;
