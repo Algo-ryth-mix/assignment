@@ -2,6 +2,11 @@
 	"sword-wood":	{
 		"pretty-name": "Wooden Sword",
 		"atk": 20,
+		"uses": 2
+	},
+	"sword-iron":	{
+		"pretty-name": "Iron Sword",
+		"atk": 50,
 		"uses": 10
 	},
 	"armor-iron":	{
@@ -9,9 +14,20 @@
 		"def": 1,
 		"uses": -1
 	},
-	"time-bonus":	{
-		"pretty-name": "Extra Time",
-		"tme": 1,
+	"head2-reward":	{
+		"pretty-name": "Hydra-Slayer",
+		"uses": -1,
+		"atk": 1,
+		"def": 0.01
+	},
+	"head1-reward":	{
+		"pretty-name": "YOU DID IT!",
 		"uses": -1
+	},
+	"head3-reward":	{
+		"pretty-name": "Lesser Hydra-Slayer",
+		"uses": -1,
+		"atk": 30,
+		"def": 4
 	}
 }

@@ -1,119 +1,96 @@
 {
-	"8-9": {
-		"pretty-name": "Hydra-Head2",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
+	"15-2": {  
+		"pretty-name":"Spider",
+      		"stats":{  
+         		"atk":5,
+         		"def":1,
+         		"value":5,
+         		"health":15
+      		},
+      		"drops":{  
+			"sword-wood": 0.70
+      		}
+   	},
+	"16-1": {  
+		"pretty-name":"Spider",
+      		"stats":{  
+         		"atk":5,
+         		"def":1,
+         		"value":5,
+         		"health":15
+      		},
+      		"drops":{  
+			"armor-iron": 0.20,
+			"sword-wood": 0.1
+      		}
+   	},
+	"16-2": {  
+		"pretty-name":"Spider",
+      		"stats":{  
+         		"atk":5,
+         		"def":1,
+         		"value":5,
+         		"health":15
+      		},
+      		"drops":{  
+			"armor-iron": 0.70
+      		}
+   	},
+	"16-3": {  
+		"pretty-name":"Zombie",
+      		"stats":{  
+         		"atk":5,
+         		"def":1,
+         		"value":5,
+         		"health":15
+      		},
+      		"drops":{  
+			"sword-wood": 0.70
+      		}
+   	},
+	"17-1": {  
+		"pretty-name":"Spider",
+      		"stats":{  
+         		"atk":5,
+         		"def":1,
+         		"value":5,
+         		"health":15
+      		},
+      		"drops":{  
+			"sword-wood": 0.70
+      		}
+   	},
+	"17-3": {  
+		"pretty-name":"Zombie",
+      		"stats":{  
+         		"atk":5,
+         		"def":1,
+         		"value":5,
+         		"health":15
+      		},
+      		"drops":{  
 			"armor-iron": 0.20
-		}
-	},
-	"9-9": {
-		"pretty-name": "Hydra-Head1",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
-			"armor-iron": 0.20
-		}
-	},
-	"10-9": {
-		"pretty-name": "Hydra-Head3",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
-			"armor-iron": 0.20
-		}
-	},
-	"8-8": {
-		"pretty-name": "Hydra-Neck2",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
-			"armor-iron": 0.20
-		}
-	},
-	"9-8": {
-		"pretty-name": "Hydra-Neck-Middle",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
-			"armor-iron": 0.20
-		}
-	},
-	"10-8": {
-		"pretty-name": "Hydra-Neck1",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
-			"armor-iron": 0.20
-		}
-	},
-	"8-7": {
-		"pretty-name": "Hydra-Neck-Corner2",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
-			"armor-iron": 0.20
-		}
-	},
-	"9-7": {
-		"pretty-name": "Hydra-Neck-Corner2",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
-			"armor-iron": 0.20
-		}
-	},
-	"10-7": {
-		"pretty-name": "Hydra-Neck-Corner1",
-		"stats": {
-			"atk": 10,
-			"def": 5,
-			"value":5,
-			"health":50
-		},
-		"drops": {
-			"sword-wood": 0.80,
-			"armor-iron": 0.20
-		}
-	}
+      		}
+   	},
+
+	"15-5": {  
+		"pretty-name":"Spider",
+      		"stats":{  
+         		"atk":0,
+         		"def":0,
+         		"value":0,
+         		"health":1
+      		},
+      		"drops":{}
+   	},
+	"15-6": {  
+		"pretty-name":"Zombie",
+      		"stats":{  
+         		"atk":0,
+         		"def":0,
+         		"value":0,
+         		"health":1
+      		},
+      		"drops":{}
+   	}
 }

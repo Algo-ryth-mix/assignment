@@ -1,0 +1,22 @@
+{
+		"15-5": {  
+		"pretty-name":"Spider",
+      		"stats":{  
+         		"atk":20,
+         		"def":0,
+         		"value":15,
+         		"health":35
+      		},
+      		"drops":{ "sword-wood":1 }
+   	},
+	"15-6": {  
+		"pretty-name":"Zombie",
+      		"stats":{  
+         		"atk":20,
+         		"def":0,
+         		"value":15,
+         		"health":40
+      		},
+      		"drops":{ "armor-iron":1 }
+   	}
+}

@@ -1,0 +1,11 @@
+{	"26-24": {  
+		"pretty-name":"Trader",
+      		"stats":{  
+         		"atk":0,
+         		"def":0,
+         		"value":-40,
+         		"health":1
+      		},
+      		"drops":{ "sword-iron":0.99 }
+   	}
+}

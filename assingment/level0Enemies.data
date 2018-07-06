@@ -1,0 +1,15 @@
+{
+	"4-4": {  
+		"pretty-name":"Spider",
+      		"stats":{  
+         		"atk":5,
+         		"def":1,
+         		"value":5,
+         		"health":15
+      		},
+      		"drops":{  
+			"sword-wood": 0.70
+      		}
+   	}
+
+}

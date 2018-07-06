@@ -1,0 +1,15 @@
+~~ BOSS PATTERN ~~
+
+...$...
+...$... 
+$$$$$$$
+$$$$$$$
+..$$$..
+..$$$..
+
+				   (TAIL-BACK)
+				   (TAIL-FRONT)
+(LW3)(LW4)(LW5)(BODY-CENTER-MIDDLE)(RW5)(RW4)(RW3)
+    (LW2)(LW1)(LWC)(BODY-FRONT)(RWC)(RW1)(RW2)
+	   (NECK-LEFT)(NECK-MIDDLE)(NECK-RIGHT)
+	          (HEAD1)(HEAD2)(HEAD3)

@@ -139,8 +139,23 @@ public:
 				}
 			}
 
-			//apply damage to enemy
-			e.health -= total_damage;
+			if(e.extraData.find("require") != e.extraData.end())
+			{
+				for(const auto& item : m_inventory)
+				{
+					if(e.extraData["require"] == item.id)
+					{
+						//apply damage to enemy (only if the player has the required weapon)
+						e.health -= total_damage;
+					}
+				}
+			}
+			else
+			{
+				//apply damage to enemy
+				e.health -= total_damage;
+			}
+
 
 			if(e.health > 0)
 			{
@@ -158,6 +173,17 @@ public:
 
 			//add points to player
 			m_points+=e.value;
+
+			if(e.extraData.find("destroys") != e.extraData.end())
+			{
+				using array_t =  nlohmann::json::array_t;
+				for(auto& elem : e.extraData["destroys"].get<array_t>())
+				{
+					EnemyController::get().removeEnemyAt(elem.get<array_t>()[0].get<int>(),
+														 elem.get<array_t>()[1].get<int>());
+
+				}
+			}
 
 			//remove enemy
 			EnemyController::get().removeEnemyAt(x,y);

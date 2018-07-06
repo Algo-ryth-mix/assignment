@@ -8,7 +8,7 @@
 #include "EnemyController.h"
 
 
-//#define __PIFTRUE
+#define __PIFTRUE
 
 #if defined(__PIFTRUE)
 #define ONLY_IF(X) X
@@ -19,7 +19,7 @@
 
 int main(int argc,char ** argv)
 {
-
+	try{
 
 	sf::RectangleShape bg;
 	bg.setSize({1000,800});
@@ -28,8 +28,7 @@ int main(int argc,char ** argv)
 	bg.setTexture(LoadBufferedImage("assets/Environment/BG1.png"));
 
 	//Player Texture
-	sf::Texture wallTex;
-	wallTex.loadFromFile("assets/Environment/Wall.png");
+	sf::Texture* wallTex = LoadBufferedImage("assets/Environment/Wall.png");
 
 	sf::Texture portalTex;
 	portalTex.loadFromFile("assets/Environment/Portal.png");
@@ -44,12 +43,12 @@ int main(int argc,char ** argv)
 	gameboard tiles;
 	
 	//load level 1 (make sure level1.data exists)
-	LevelLoader::loadLevel(&tiles,1);
+	LevelLoader::loadLevel(&tiles,0);
 
 	EnemyController& controller = EnemyController::get();
 
 	controller.registerGameBoard(&tiles);
-	controller.loadEnemies(1);
+	controller.loadEnemies(0);
 
 	//create initial draw information
 	for_all_tiles(&tiles,[](int x,int y,Tile& t){
@@ -59,7 +58,7 @@ int main(int argc,char ** argv)
 	
 	//create player
 	Player player(&tiles);
-	player.addToInventory(ItemLoader::loadItem("armor-iron"));
+	//player.addToInventory(ItemLoader::loadItem("armor-iron"));
 	
 
 	//game loop
@@ -77,7 +76,24 @@ int main(int argc,char ** argv)
 
 			if(event.type == sf::Event::KeyPressed)
 			{
-				if(event.key.code == sf::Keyboard::W)
+				if(event.key.code == sf::Keyboard::Num1)
+				{
+					bg.setTexture(LoadBufferedImage("assets/Environment/BG1.png"));
+				}
+				else if(event.key.code == sf::Keyboard::Num2)
+				{
+					bg.setTexture(LoadBufferedImage("assets/Environment/BG2.png"));
+				}
+				else if(event.key.code == sf::Keyboard::Num3)
+				{
+					bg.setTexture(LoadBufferedImage("assets/Environment/BG3.png"));
+				}
+				else if(event.key.code == sf::Keyboard::Num9)
+				{
+					
+					wallTex = LoadBufferedImage("assets/Environment/Bush.png");
+				}
+				else if(event.key.code == sf::Keyboard::W)
 				{
 					player.setPosition(player.getPosition().x,player.getPosition().y-1);
 				}
@@ -95,7 +111,8 @@ int main(int argc,char ** argv)
 				}
 				else if(event.key.code == sf::Keyboard::F5)
 				{
-					LevelLoader::loadLevel(&tiles,1);
+					LevelLoader::loadLevel(&tiles,7);
+					EnemyController::get().loadEnemies(7);
 					player.spawn();
 				}
 			}
@@ -121,7 +138,7 @@ int main(int argc,char ** argv)
 			}break;
 			case IS_WALL:
 			{
-					tile.repr.setTexture(&wallTex);
+					tile.repr.setTexture(wallTex);
 					
 					tile.repr.setFillColor(sf::Color::White);
 			}break;
@@ -180,5 +197,14 @@ int main(int argc,char ** argv)
 	}
 	
 	return 0;
+	}
+	catch(nullptr_t){}
+	/*
+	catch(nlohmann::detail::exception &e)
+	{
+		std::cout << e.what();
+		throw;
+	}
+	*/
 
 }

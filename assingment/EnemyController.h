@@ -19,6 +19,7 @@ struct Enemy
 	int value;
 	int health;
 	std::vector<Item> drops;
+	nj::json::object_t extraData;
 };
 
 
@@ -49,10 +50,12 @@ public:
     }
 	void removeEnemyAt(int x,int y)
 	{
+		std::cout << "Attempting to remove enemy @:" << x << "-" << y<<std::endl;
 		m_enemies.erase(std::remove_if(m_enemies.begin(),m_enemies.end(),[&](Enemy& e)
 		{
 			return e.x == x && e.y == y;
 		}));
+		m_board->at(x).at(y).state = IS_GROUND;
 		std::cout << "removed Enemy @:" << x << "-" << y<<std::endl;
 	}
 
@@ -100,6 +103,10 @@ public:
 					{
 						e.drops.push_back(ItemLoader::loadItem(j_obj.first));
 					}
+				}
+				if(!j[id]["_extraData"].is_null())
+				{
+					e.extraData = j[id]["_extraData"].get<nj::json::object_t>();
 				}
 			}
 		});
